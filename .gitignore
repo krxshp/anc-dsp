@@ -1,0 +1,30 @@
+# Quartus
+syn/db/
+syn/incremental_db/
+syn/output_files/
+syn/*.qws
+syn/*.qsf.bak
+syn/simulation/
+*.rpt
+*.done
+*.smsg
+*.summary
+*.jdi
+*.pin
+*.sof
+*.pof
+
+# Simulation
+*.vvp
+*.vcd
+*.fst
+sim/my_work/
+transcript
+*.wlf
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+*~

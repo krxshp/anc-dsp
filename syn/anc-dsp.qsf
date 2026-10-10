@@ -1,0 +1,42 @@
+set_global_assignment -name FAMILY "Cyclone IV E"
+set_global_assignment -name DEVICE EP4CE115F29C7
+set_global_assignment -name TOP_LEVEL_ENTITY anc_dsp_top
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+set_global_assignment -name NUM_PARALLEL_PROCESSORS ALL
+set_global_assignment -name VERILOG_INPUT_VERSION SYSTEMVERILOG_2005
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name NOMINAL_CORE_SUPPLY_VOLTAGE 1.2V
+set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 1
+
+set_global_assignment -name SYSTEMVERILOG_FILE ../rtl/anc_dsp_top.sv
+
+set_global_assignment -name SOURCE_TCL_SCRIPT_FILE ../board/pinout_50_MHz.tcl
+set_global_assignment -name SOURCE_TCL_SCRIPT_FILE ../board/pinout_switches.tcl
+set_global_assignment -name SOURCE_TCL_SCRIPT_FILE ../board/pinout_push_buttons.tcl
+set_global_assignment -name SOURCE_TCL_SCRIPT_FILE ../board/pinout_green_leds.tcl
+set_global_assignment -name SOURCE_TCL_SCRIPT_FILE ../board/pinout_red_leds.tcl
+set_global_assignment -name SOURCE_TCL_SCRIPT_FILE ../board/pinout_7segs.tcl
+set_global_assignment -name SOURCE_TCL_SCRIPT_FILE ../board/pinout_audio.tcl
+set_global_assignment -name SOURCE_TCL_SCRIPT_FILE ../board/pinout_vga.tcl
+set_global_assignment -name SOURCE_TCL_SCRIPT_FILE ../board/pinout_ps2.tcl
+
+set_instance_assignment -name VIRTUAL_PIN ON -to Resetn
+
+# ps2 tcl says 2.5 V, bank is 3.3. vga tcl has no io standard
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to PS2_CLOCK_I
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to PS2_DATA_I
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_RED_O[*]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_GREEN_O[*]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_BLUE_O[*]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_CLOCK_O
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_BLANK_O
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_HSYNC_O
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_VSYNC_O
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_SYNC_O
+
+set_global_assignment -name SDC_FILE anc-dsp.sdc
+
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
