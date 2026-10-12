@@ -12,7 +12,6 @@ Real-time audio DSP + adaptive noise cancellation on DE2-115 FPGA, using Quartus
 
 ## Software
 - SystemVerilog
-- Python (coefficient generation + golden models)
 
 ## Notes
 - `rtl/anc_dsp_top.sv` is just the port list, outputs tied off
